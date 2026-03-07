@@ -1,8 +1,34 @@
 spring:
   application:
     name: jd-platform
+  profiles:
+    include: local
   datasource:
     url: jdbc:mysql://localhost:3306/mytestdb?createDatabaseIfNotExist=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: rneksrl951!
+  jpa:
+    hibernate:
+      ddl-auto: update
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID:your-kakao-rest-api-key}
+            client-secret: ${KAKAO_CLIENT_SECRET:your-kakao-client-secret}
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-authentication-method: client_secret_post
+            authorization-grant-type: authorization_code
+            scope:
+              - profile_nickname
+              - profile_image
+              - account_email
+            client-name: Kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id

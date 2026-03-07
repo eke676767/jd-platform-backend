@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JD Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+        }
+        .landing {
+            text-align: center;
+            padding: 48px;
+        }
+        h1 { font-size: 36px; margin-bottom: 16px; font-weight: 700; }
+        p { color: #94a3b8; margin-bottom: 32px; font-size: 18px; }
+        a {
+            display: inline-block;
+            padding: 16px 32px;
+            background: #3b82f6;
+            color: #fff;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        a:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <div class="landing">
+        <h1>Hello World</h1>
+        <p>JD Platform - SaaS 구독 플랫폼에 오신 것을 환영합니다</p>
+        <a th:href="@{/login}">로그인 / 회원가입</a>
+    </div>
+</body>
+</html>

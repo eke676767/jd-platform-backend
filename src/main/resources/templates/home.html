@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈 - JD Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+        }
+        .header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo { font-size: 20px; font-weight: 700; }
+        .logout-btn {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .main {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 48px;
+            text-align: center;
+        }
+        .success-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .welcome-text {
+            color: #94a3b8;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .user-email {
+            margin-top: 24px;
+            padding: 16px 24px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <span class="logo">JD Platform</span>
+        <a th:href="@{/logout}" class="logout-btn">로그아웃</a>
+    </header>
+    <main class="main">
+        <span class="success-badge">회원가입 완료</span>
+        <h1>환영합니다!</h1>
+        <p class="welcome-text">
+            카카오 로그인으로 회원가입이 완료되었습니다.<br>
+            JD Platform의 모든 서비스를 이용하실 수 있습니다.
+        </p>
+        <div class="user-email">
+            <span th:text="${userEmail}">이메일</span>
+        </div>
+    </main>
+</body>
+</html>
