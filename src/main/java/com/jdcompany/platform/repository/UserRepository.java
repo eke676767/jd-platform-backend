@@ -1,16 +1,13 @@
 package com.jdcompany.platform.repository;
 
-import com.jdcompany.platform.domain.User;
+import com.jdcompany.platform.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	Optional<User> findByEmail(String email);
-
-	boolean existsByEmail(String email);
-
 	Optional<User> findByProviderAndProviderId(String provider, String providerId);
+
+	Optional<User> findByEmail(String email);
 }

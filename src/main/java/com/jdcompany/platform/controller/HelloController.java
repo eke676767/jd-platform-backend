@@ -1,13 +1,15 @@
 package com.jdcompany.platform.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.Map;
+
+@RestController
 public class HelloController {
 
 	@GetMapping("/")
-	public String index() {
-		return "login";
+	public Map<String, String> index() {
+		return Map.of("status", "ok", "service", "jd-platform");
 	}
 }
