@@ -7,32 +7,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/auth")
-public class LoginController {
+@RequestMapping("/api/subscription")
+public class SubscriptionController {
 
 	private final SubscriptionRepository subscriptionRepository;
 
-	public LoginController(SubscriptionRepository subscriptionRepository) {
+	public SubscriptionController(SubscriptionRepository subscriptionRepository) {
 		this.subscriptionRepository = subscriptionRepository;
 	}
 
-	@GetMapping("/me")
-	public Map<String, Object> me(Authentication authentication) {
+	@GetMapping
+	public Map<String, Object> getSubscription(Authentication authentication) {
 		Long userId = (Long) authentication.getPrincipal();
-		String email = (String) authentication.getCredentials();
 
-		String plan = subscriptionRepository.findByUserIdAndStatus(userId, "active")
-				.map(Subscription::getPlan)
-				.orElse("free");
-
-		Map<String, Object> result = new HashMap<>();
-		result.put("userId", userId);
-		result.put("email", email);
-		result.put("plan", plan);
-		return result;
+		return subscriptionRepository.findByUserIdAndStatus(userId, "active")
+				.map(sub -> Map.<String, Object>of(
+						"plan", sub.getPlan(),
+						"status", sub.getStatus(),
+						"startedAt", sub.getStartedAt().toString()
+				))
+				.orElse(Map.of(
+						"plan", "free",
+						"status", "none"
+				));
 	}
 }
